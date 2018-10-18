@@ -1,2 +1,2 @@
 # I-can-t-see
-this is just a test to see if the program works
+This project uses multiple ultrasonic sensors on a single arduino
