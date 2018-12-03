@@ -20,3 +20,9 @@ im3=imresize(im3,0.1);
 im4=imresize(im4,0.1);
 im5=imresize(im5,0.1);
 
+
+subplot(2,3,1), imshow(im1)
+subplot(2,3,2), imshow(im2)
+subplot(2,3,3), imshow(im3)
+subplot(2,3,4), imshow(im4)
+subplot(2,3,5), imshow(im5)
