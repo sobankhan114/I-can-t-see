@@ -26,3 +26,6 @@ subplot(2,3,2), imshow(im2)
 subplot(2,3,3), imshow(im3)
 subplot(2,3,4), imshow(im4)
 subplot(2,3,5), imshow(im5)
+
+
+imf=cat(3,im1,im2,im3,im4,im5);
