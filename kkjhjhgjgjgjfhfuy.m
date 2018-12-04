@@ -1,12 +1,12 @@
-clear all
+clear all %#ok<CLALL>
 clc
 
-
+%{
 x=[1,2,3,4,5];
 y=[0,0,0,0,0];
 x1=linspace(1,5,100);
 num=1;
-
+%}
 
 
 
@@ -29,14 +29,29 @@ im4=imresize(im4,0.2);
 im5=imresize(im5,0.2);
 
 
-%{
+
 x=1:8;
 y=[1.69,1.78,1.57,1.59,1.65,1.68,1.70,1.71];
-p=polyfit(x,y,7);
+p1=polyfit(x,y,7);
 x1=linspace(1,5,100);
-f1=polyval(p,x1);
-plot(x1,f1);
+f1=polyval(p1,x1);
+p2=diff(p1);
+p3=diff(p1,2);
+p4=diff(p1,3);
+
+%{
+subplot(3,1,1),plot(x1,f1);
+f2=polyval(p2,x1);
+subplot(4,1,2),plot(x1,f2);
+f3=polyval(p3,x1);
+subplot(4,1,3),plot(x1,f3);
+f4=polyval(p4,x1);
+subplot(4,1,4),plot(x1,f4);
 %}
+f1=polyval(p1,x1);
+plot(x1,f1);
+
+
 
 
 %{
@@ -55,13 +70,7 @@ subplot(2,3,5), imshow(im5)
 imf=cat(3,im1,im2,im3,im4,im5);
 
 
-
-
-
-
-
-
-
+%{
 
 for row=106:116
     for col=405:415
@@ -75,3 +84,4 @@ for row=106:116
     end
 end
 
+%}
