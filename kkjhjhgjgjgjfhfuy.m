@@ -9,6 +9,7 @@ num=1;
 
 
 
+
 image1=imread('1.jpg');
 image2=imread('2.jpg');
 image3=imread('3.jpg');
@@ -28,6 +29,14 @@ im4=imresize(im4,0.2);
 im5=imresize(im5,0.2);
 
 
+%{
+x=1:8;
+y=[1.69,1.78,1.57,1.59,1.65,1.68,1.70,1.71];
+p=polyfit(x,y,7);
+x1=linspace(1,5,100);
+f1=polyval(p,x1);
+plot(x1,f1);
+%}
 
 
 %{
@@ -48,10 +57,16 @@ imf=cat(3,im1,im2,im3,im4,im5);
 
 
 
+
+
+
+
+
+
 for row=106:116
     for col=405:415
         for deapth=1:5
-            y(deapth)=imf(row,col,deapth);
+            y(deapth)=imf(row,col,deapth)/10;
         end
         p=polyfit(x,y,4);
         f1=polyval(p,x1);
@@ -59,5 +74,4 @@ for row=106:116
         num=num+1;
     end
 end
-
 
