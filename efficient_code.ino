@@ -14,7 +14,7 @@
 #define motor2 5                                   //all the motors
 #define motor3 10
 #define motor4 11
-
+#define motorupdate 100
 /////////////////////////////////////////////////////////////////////////
 unsigned int time_now1 = 0;
 unsigned int time_now2 = 0;
@@ -54,13 +54,18 @@ void loop()
   dist2=dist(trigpin2,echopin2);
   dist3=dist(trigpin3,echopin3);
   dist4=dist(trigpin4,echopin4);                              //main function , preety small ha !
+  
   //print_dist();
   
+  if(millis()>motorupdate+time_now1)
+  {
   speedcontrol(motor1,dist1);
   speedcontrol(motor2,dist2);
   speedcontrol(motor3,dist3);
   speedcontrol(motor4,dist4);
   
+  time_now1=millis();
+  }
   
   
 }                                             ////////////////////////////////////////////////////
@@ -151,6 +156,7 @@ int setlevel(int value)
 
 
 //////////////////////////////////////////////////////////////////////////////
+
 
                        //checkout this code
                        //https://github.com/OliviliK/Arduino-Robot/blob/master/projects/Ultrasonic_Sensor_Array.ino
