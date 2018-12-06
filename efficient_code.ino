@@ -2,16 +2,18 @@
 
 #define trigPin4 13
 #define echoPin4 12
-#define trigPin3 11
-#define echoPin3 10                             //all the ultrasonic sensors pin configuration
-#define trigPin2 9
-#define echoPin2 8
-#define trigPin1 7
-#define echoPin1 6
+#define trigPin3 9
+#define echoPin3 8                             //all the ultrasonic sensors pin configuration
+#define trigPin2 7
+#define echoPin2 6
+#define trigPin1 4
+#define echoPin1 2
 
 ///////////////////////////////////////////////////////////////////////
-
-
+#define motor1 3
+#define motor2 5                                   //all the motors
+#define motor3 10
+#define motor4 11
 
 /////////////////////////////////////////////////////////////////////////
 unsigned int time_now1 = 0;
@@ -37,20 +39,24 @@ pinMode(trigPin4, OUTPUT);
 pinMode(echoPin4, INPUT);
 ///////////////////////////////////////////////////////////////////////
   
+pinMode(motor1,OUTPUT);
+pinMode(motor2,OUTPUT);
+pinMode(motor3,OUTPUT);                                     // motor pin configuration
+pinMode(motor4,OUTPUT);
 }
 
 void loop() 
-{                                             /////////////////////
+{                                             ////////////////////////////////////////////////////
   dist1=dist(trigpin1,echopin1);
   dist2=dist(trigpin2,echopin2);
   dist3=dist(trigpin3,echopin3);
   dist4=dist(trigpin4,echopin4);                              //main function , preety small ha !
   print_dist();
-}                                             /////////////////////
+}                                             ////////////////////////////////////////////////////
 
 
 
-///////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 void print_dist()
 {
     Serial.print ( "Sensor1  ");
@@ -80,6 +86,28 @@ float dist(int trigpin,int echopin)
     b = (dur1/2) / 29.1;
     return b;
  }
+
+//////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
