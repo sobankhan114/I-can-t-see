@@ -22,6 +22,7 @@ unsigned int time_now3 = 0;
 unsigned int time_now4 = 0;                          // all the variables used in the program
 long dur1,dur2,dur3,dur4,dist1,dist2,dist3,dist4;
 float b=0;
+int status;
 //////////////////////////////////////////////////////////////////////////
 
 void setup() {
@@ -51,7 +52,15 @@ void loop()
   dist2=dist(trigpin2,echopin2);
   dist3=dist(trigpin3,echopin3);
   dist4=dist(trigpin4,echopin4);                              //main function , preety small ha !
-  print_dist();
+  //print_dist();
+  
+  speedcontrol(motor1,dist1);
+  speedcontrol(motor2,dist2);
+  speedcontrol(motor3,dist3);
+  speedcontrol(motor4,dist4);
+  
+  
+  
 }                                             ////////////////////////////////////////////////////
 
 
@@ -89,27 +98,57 @@ float dist(int trigpin,int echopin)
 
 //////////////////////////////////////////////////////////////////////////////
 
+void speedcontrol(int select,int distance)
+{
+  status=setlevel(distance);
+  
+  switch (status)
+  {
+    case 1:
+      {
+        analogWrite(select,250);
+        break;
+      }
+    case 2:
+      {
+        analogWrite(select,200);
+        break;
+      }
+    case 3:
+      {
+        analogWrite(select,150);
+        break;
+      }
+  }
+  
+}
+
+
+/////////////////////////////////////////////////////////////////////////////
+
+int setlevel(int value)
+{
+  if(value<=80)
+  {
+    return 1;
+  }
+  
+  else if(value>80 && value<=160)
+  {
+    return 2;
+  }
+  
+  else if(value>160 && value<=230)
+  {
+    return 3;
+  }
+  
+}
 
 
 
+//////////////////////////////////////////////////////////////////////////////
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                       //checkout this code
+                       //https://github.com/OliviliK/Arduino-Robot/blob/master/projects/Ultrasonic_Sensor_Array.ino
 
