@@ -9,47 +9,37 @@
 #define trigPin1 7
 #define echoPin1 6
 
-///////////////////////////////////////////////////////
-
-
+///////////////////////////////////////////////////////////////////////
 
 #define buzzer 6
 #define redLED 10
 
 
-
-
+/////////////////////////////////////////////////////////////////////////
 unsigned int time_now1 = 0;
 unsigned int time_now2 = 0;
 unsigned int time_now3 = 0;
-unsigned int time_now4 = 0;
+unsigned int time_now4 = 0;                          // all the variables used in the program
 long dur1,dur2,dur3,dur4,dist1,dist2,dist3,dist4;
 float b=0;
-
+//////////////////////////////////////////////////////////////////////////
 
 void setup() {
 
 Serial.begin (9600);
 
 //////////////////////////////////////////////////////////////////////////  
-
 pinMode(trigPin1, OUTPUT);
-
 pinMode(echoPin1, INPUT);
-
 pinMode(trigPin2, OUTPUT);
-
 pinMode(echoPin2, INPUT);                                     //ultrasonic pin setup
-  
 pinMode(trigPin3, OUTPUT);
-
 pinMode(echoPin3, INPUT);
-
 pinMode(trigPin4, OUTPUT);
-
 pinMode(echoPin4, INPUT);
-
 ///////////////////////////////////////////////////////////////////////
+  
+  
   
   
 pinMode(buzzer, OUTPUT);
@@ -60,8 +50,10 @@ pinMode(redLED, OUTPUT);
 
 void loop() 
 {                                             /////////////////////
-  dist1=dist(1);
-  dist2=dist(2);                              //main function , preety small ha !
+  dist1=dist(trigpin1,echopin1);
+  dist2=dist(trigpin2,echopin2);
+  dist3=dist(trigpin3,echopin3);
+  dist4=dist(trigpin4,echopin4);                              //main function , preety small ha !
   print_dist();
   buzz();
 }                                             /////////////////////
@@ -89,50 +81,21 @@ void print_dist()
  }
  
 }
-////////////////////////////////////////////////
-float dist(int c)
+//////////////////////////////////////////////////////////////////////////
+float dist(int trigpin,int echopin)
 {
   b=0;
-  if(c==1)                                                 //This function is used to calculate distance
-  {                                                        //for both the ultrasonic sensors
-    digitalWrite(trigPin1,LOW);
-  
+    digitalWrite(trigPin,LOW);                            
     delayMicroseconds(2);
-  
-    digitalWrite(trigPin1, HIGH);
-
-    delayMicroseconds(5);
-
-    digitalWrite(trigPin1, LOW);
-  
-    dur1 = pulseIn(echoPin1, HIGH);
-  
-  
+    digitalWrite(trigPin, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(trigPin, LOW);
+    dur1 = pulseIn(echoPin, HIGH);
     b = (dur1/2) / 29.1;
-    return b; 
-  }
+    return b;
+ }
 
-  else if(c==2)
-  {
-    digitalWrite(trigPin2,LOW);
-  
-    delayMicroseconds(2);
-  
-    digitalWrite(trigPin2, HIGH);
-
-    delayMicroseconds(5);
-
-    digitalWrite(trigPin2, LOW);
-  
-    dur1 = pulseIn(echoPin2, HIGH);
-  
-  
-    b = (dur1/2) / 29.1;
-    return b; 
-  }
-  
-}
-//////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
 
 void buzz()
 {
