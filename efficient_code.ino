@@ -11,8 +11,6 @@
 
 ///////////////////////////////////////////////////////////////////////
 
-#define buzzer 6
-#define redLED 10
 
 
 /////////////////////////////////////////////////////////////////////////
@@ -39,13 +37,6 @@ pinMode(trigPin4, OUTPUT);
 pinMode(echoPin4, INPUT);
 ///////////////////////////////////////////////////////////////////////
   
-  
-  
-  
-pinMode(buzzer, OUTPUT);
-
-pinMode(redLED, OUTPUT);
-
 }
 
 void loop() 
@@ -55,33 +46,28 @@ void loop()
   dist3=dist(trigpin3,echopin3);
   dist4=dist(trigpin4,echopin4);                              //main function , preety small ha !
   print_dist();
-  buzz();
 }                                             /////////////////////
 
 
 
-////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////
 void print_dist()
 {
- 
-
- 
- if (dist1 >= 150 && dist2 >=150)
- {
-    Serial.println("Out of range");
- }
- else
- {
     Serial.print ( "Sensor1  ");
     Serial.print ( dist1);
     Serial.println("cm");
     Serial.print ( "Sensor2  ");
     Serial.print ( dist2);
+    Serial.println("cm");                                    // to serial print the distance
+    Serial.print ( "Sensor3  ");
+    Serial.print ( dist3);
     Serial.println("cm");
- }
- 
+    Serial.print ( "Sensor4  ");
+    Serial.print ( dist4);
+    Serial.println("cm");
 }
-//////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
 float dist(int trigpin,int echopin)
 {
   b=0;
@@ -95,39 +81,6 @@ float dist(int trigpin,int echopin)
     return b;
  }
 
-///////////////////////////////////////////////////////////////////////////////////
-
-void buzz()
-{
-  if(dist1<50||dist2<50)
-  {
-    if(dist1<dist2)
-    {
-      buzzdelay(dist1);                            //This function determines which object is more close to the ultrasonic
-    }
-    else if(dist2<dist1)
-    {
-      buzzdelay(dist2);
-    }
-  }
-}
-
-///////////////////////////////////////////////////
-
-void buzzdelay(float a)
-{
-  a=a*10;
-  if(millis()>a+time_now1)
-  {
-    digitalWrite(buzzer,HIGH);                         //This function buzzez
-    time_now1=millis();
-  }
-  if(millis()>a/0.5+time_now2)
-  {
-    digitalWrite(buzzer,LOW);
-    time_now2=millis();
-  }
-}
 
 
 
