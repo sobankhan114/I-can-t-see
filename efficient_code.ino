@@ -1,14 +1,29 @@
-#define trigPin1 13
-#define echoPin1 12
+///////////////////////////////////////////////////////
+
+#define trigPin4 13
+#define echoPin4 12
+#define trigPin3 11
+#define echoPin3 10                             //all the ultrasonic sensors pin configuration
 #define trigPin2 9
 #define echoPin2 8
+#define trigPin1 7
+#define echoPin1 6
+
+///////////////////////////////////////////////////////
+
+
 
 #define buzzer 6
 #define redLED 10
 
-unsigned long time_now1 = 0;
-unsigned long time_now2 = 0;
-long dur1,dur2,dist1,dist2;
+
+
+
+unsigned int time_now1 = 0;
+unsigned int time_now2 = 0;
+unsigned int time_now3 = 0;
+unsigned int time_now4 = 0;
+long dur1,dur2,dur3,dur4,dist1,dist2,dist3,dist4;
 float b=0;
 
 
@@ -16,14 +31,27 @@ void setup() {
 
 Serial.begin (9600);
 
+//////////////////////////////////////////////////////////////////////////  
+
 pinMode(trigPin1, OUTPUT);
 
 pinMode(echoPin1, INPUT);
 
 pinMode(trigPin2, OUTPUT);
 
-pinMode(echoPin2, INPUT);
+pinMode(echoPin2, INPUT);                                     //ultrasonic pin setup
+  
+pinMode(trigPin3, OUTPUT);
 
+pinMode(echoPin3, INPUT);
+
+pinMode(trigPin4, OUTPUT);
+
+pinMode(echoPin4, INPUT);
+
+///////////////////////////////////////////////////////////////////////
+  
+  
 pinMode(buzzer, OUTPUT);
 
 pinMode(redLED, OUTPUT);
